@@ -1,12 +1,17 @@
 # -- coding: utf-8 --
 from api.models import *
 from rest_framework import routers, serializers, viewsets
-
+import hashlib
 '''For Users'''
 class WifiUsersSerializer(serializers.ModelSerializer):
     class Meta:
         model = WifiUsers
         fields = ('id','first_name', 'last_name', 'company_name', 'phone', 'email', 'password' ,'info', )        
+    def create(self, validated_data):
+        validated_data['password'] = hashlib.md5( validated_data['password'] ).hexdigest()
+        return WifiUsers(**validated_data)
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = WifiUsers.objects.all()
     serializer_class = WifiUsersSerializer

@@ -15,7 +15,7 @@ class WifiUsers(models.Model):
    phone = models.CharField(max_length=100, verbose_name = 'телефон клиента',)
    email = models.CharField(max_length=100, verbose_name = 'мыло клиента', blank=True, null=True)
    info = models.TextField(verbose_name = 'Информация о клиенте, примечания', blank=True, null=True) 
-   password = models.CharField(max_length=100, verbose_name = 'пароль md5',)
+   password = models.CharField(max_length=500, verbose_name = 'пароль md5',)
    def __unicode__(self):
         return '%s %s  %s' % (self.first_name, self.last_name, self.company_name)
 
