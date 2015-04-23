@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
-from snippets.models import *
-from snippets.serializers import *
+from api.models import *
+from api.serializers import *
 
 class JSONResponse(HttpResponse):
     """
@@ -15,3 +15,4 @@ class JSONResponse(HttpResponse):
         content = JSONRenderer().render(data)
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
+
